@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="exemplo de fallback">
+    <title>Minha primeira PWA</title>
+    <link rel="apple-touch-icon" href="images/pwa-icon-256.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!--viewport para designers responsivos (mobo), content é a configuração-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="white" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="favicon.ico">
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/db.js"></script>
+</head>
+
+<body class="fullscreen">
+    <header>
+        <h1 class="title">Minhas Anotações</h1>
+        <img src="/images/capibaraNotes.png" alt="pwa" width="256" height="256">
+    </header>
+
+    <div class="container">
+        <div class="form">
+            <form>
+                <input type="text" name="titulo" id="titulo" placeholder="TITULO DA ANOTAÇÃO" class="input_text">
+                <input type="text" name="categoria" id="categoria" placeholder="CATEGORIA DA ANOTAÇÃO" class="input_text">
+                <input type="date" name="data" id="data" class="input_date">
+                <textarea id="descricao" cols="30" rows="10" placeholder="DESCREVA A ANOTAÇÃO"></textarea>
+            </form>
+        </div>
+        <div class="botoes">
+            <button id="btnCadastro">CADASTRAR</button>
+            <button id="btnCarregar">LISTAR</button>
+        </div>
+        </div>
+    
+        <div class="form">
+            <form>
+                <input type="text" name="buscar" id="buscar" placeholder="BUSCAR ANOTAÇÃO" class="input_text">
+            </form>
+        </div>
+        <div class="botoes">
+            <button id="btnBuscar">BUSCAR</button>
+            <button id="btnAlterar">ALTERAR</button>
+            <button id="btnExcluir">EXCLUIR</button>
+        </div>
+    
+        <div id="resultados"></div>
+</body>
+
+</html>
