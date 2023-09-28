@@ -17,36 +17,35 @@
 </head>
 
 <body class="fullscreen">
-    <header>
+    <header class="container">
         <h1 class="title">Minhas Anotações</h1>
         <img src="/images/capibaraNotes.png" alt="pwa" width="256" height="256">
     </header>
 
     <div class="container">
         <div class="form">
-            <form>
-                <input type="text" name="titulo" id="titulo" placeholder="TITULO DA ANOTAÇÃO" class="input_text">
-                <input type="text" name="categoria" id="categoria" placeholder="CATEGORIA DA ANOTAÇÃO" class="input_text">
-                <input type="date" name="data" id="data" class="input_date">
-                <textarea id="descricao" cols="30" rows="10" placeholder="DESCREVA A ANOTAÇÃO"></textarea>
-            </form>
+            <input type="text" name="titulo" id="titulo" placeholder="TITULO DA ANOTAÇÃO" class="input_text">
+            <input type="text" name="categoria" id="categoria" placeholder="CATEGORIA DA ANOTAÇÃO" class="input_text">
+            <input type="date" name="data" id="data" class="input_date">
+            <textarea id="descricao" placeholder="DESCREVA A ANOTAÇÃO"></textarea>
         </div>
         <div class="botoes">
             <button id="btnCadastro">CADASTRAR</button>
             <button id="btnCarregar">LISTAR</button>
+            <button id="limparCampos">LIMPAR</button>
         </div>
         </div>
     
-        <div class="form">
-            <form>
+        <div class="container">
+            <form class="form">
                 <input type="text" name="buscar" id="buscar" placeholder="BUSCAR ANOTAÇÃO" class="input_text">
             </form>
-        </div>
         <div class="botoes">
             <button id="btnBuscar">BUSCAR</button>
             <button id="btnAlterar">ALTERAR</button>
             <button id="btnExcluir">EXCLUIR</button>
         </div>
+    </div>
     
         <div id="resultados"></div>
 </body>

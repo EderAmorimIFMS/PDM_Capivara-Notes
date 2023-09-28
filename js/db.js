@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async event =>{
     document.getElementById('btnBuscar').addEventListener('click', buscarUmaAnotacao);
     document.getElementById('btnAlterar').addEventListener('click', alterarAnotacao);
     document.getElementById('btnExcluir').addEventListener('click', excluirAnotacao);
-
+    document.getElementById("limparCampos").addEventListener('click', limparCampos);
 });
 
 async function buscarTodasAnotacoes(){
@@ -61,7 +61,7 @@ async function adicionarAnotacao() {
     let data = document.getElementById("data").value;
     let descricao = document.getElementById("descricao").value;
 
-    const tx = await db.transaction('anotacao', 'readwrite')
+    const tx = await db.transaction('anotacao', 'readwrite');
     const store = tx.objectStore('anotacao');
 
     try {
@@ -86,7 +86,6 @@ function limparCampos() {
     document.getElementById("categoria").value = '';
     document.getElementById("data").value = '';
     document.getElementById("descricao").value = '';
-  
 }
 
 function listagem(text){
@@ -94,38 +93,47 @@ function listagem(text){
 }
 
 async function buscarUmaAnotacao(){
-    let buscar = document.getElementById("buscar").value
+    let buscar = document.getElementById("buscar").value;
 
-    const tx = await db.transaction('anotacao', 'readonly')
+    const tx = await db.transaction('anotacao', 'readonly');
     const store = tx.objectStore('anotacao');
 
     try{
         const anotacao = await store.get(buscar);
         document.getElementById("titulo").value = anotacao.titulo;
-        document.getElementById("categoria").value = anotacao.data;
-        document.getElementById("data").value = anotacao.categoria;
+        document.getElementById("categoria").value = anotacao.categoria;
+        document.getElementById("data").value = anotacao.data;
         document.getElementById("descricao").value = anotacao.descricao;
-    
+        document.getElementById("buscar").value = '';
+        
     }catch(error){ 
         console.error('Erro na busca:', error);
     }
 }
 
 async function alterarAnotacao(){
+    let titulo = document.getElementById("titulo").value;
     let categoria = document.getElementById("categoria").value;
     let data = document.getElementById("data").value;
     let descricao = document.getElementById("descricao").value;
 
-    const tx = await db.transaction('anotacao', 'readwrite')
+    const tx = await db.transaction('anotacao', 'readwrite');
     const store = tx.objectStore('anotacao');
 
     try {
-        const anotacao = await store.get(buscar)
-        await anotacao.put({
-            categoria: categoria, 
-            data: data, 
-            descricao: descricao
-        });
+        const anotacao = await store.get(titulo);
+
+        if(!anotacao){
+            alert('Anotaçao em questão não encontrada.');
+            console.log('Não tem a anotação cadastrada.');
+        } else {
+            anotacao.categoria = categoria;
+            anotacao.data = data;
+            anotacao.descricao = descricao;
+        } 
+
+        await store.put(anotacao);
+        
         await tx.done;
         limparCampos();
         alert('Alterado com sucesso!');
@@ -138,17 +146,26 @@ async function alterarAnotacao(){
 
 
 async function excluirAnotacao(){
-    let buscar = document.getElementById("buscar").value
+    let titulo = document.getElementById("titulo").value;
 
-    const tx = await db.transaction('anotacao', 'readwrite')
+    const tx = await db.transaction('anotacao', 'readwrite');
     const store = tx.objectStore('anotacao');
     
     try {
-        const anotacao = await store.get(buscar);
-        await store.delete(anotacao);
-        await tx.done;
-        alert('Deletado com sucesso!')
+        const anotacao = await store.get(titulo);
+
+        if(!anotacao){
+            alert('Anotaçao em questão não encontrada.');
+            console.log('Não tem a anotação cadastrada.');
+        } else {
+            await store.delete(titulo);
+            await tx.done;
+            limparCampos();
+
+        } 
+        
         console.log('Deletado com sucesso!');
+        alert('Deletado com sucesso!');
     } catch (error) {
         console.error('Erro ao deletar:', error);
         tx.abort();

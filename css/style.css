@@ -15,30 +15,55 @@ html, .fullscreen {
 }
 
 .container {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
 }
 
 .title {
-    font-size: 3rem;
     text-align: center;
+    text-decoration: none;
+    font-size: 3rem;
 }
   
 .form {
-    display: block;
+    display: flex;
     width: 100%;
-    margin: auto;
-
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
   
 .input_text {
-    width: 75%;
+    width: 244px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #cccccc;
     border-radius: 4px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 8px;
-    margin-bottom: 20px;
+}
+
+.input_date {
+    width: 244px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+textarea {
+    width: 244px;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
   
 .botoes{
@@ -65,7 +90,7 @@ html, .fullscreen {
     background-color: #45a049;
 }
   
-#btnExcluir{
+#btnExcluir, #limparCampos {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -76,7 +101,7 @@ html, .fullscreen {
     cursor: pointer;
 }
   
-#btnExcluir:hover {
+#btnExcluir:hover, #limparCampos:hover {
     background-color: #f66;
 }
 
@@ -127,4 +152,25 @@ html, .fullscreen {
 
 img {
     max-width: 100%;
+}
+
+/* Pagina offline */
+
+.offline {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    background-color: #f0f0f0;
+    border: 20px solid #ccc;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.offline hr {
+    height: 1px;
+    width: 200px;
+    background-color: black;
 }
